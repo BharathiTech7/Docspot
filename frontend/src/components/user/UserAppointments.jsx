@@ -4,6 +4,7 @@ import Alert from 'react-bootstrap/Alert';
 import { Container, Button } from 'react-bootstrap';
 import axios from 'axios';
 import { message } from 'antd';
+import { useCallback } from 'react';
 
 const UserAppointments = () => {
   const [userid, setUserId] = useState();
@@ -23,7 +24,7 @@ const UserAppointments = () => {
     }
   };
 
-  const getUserAppointment = async () => {
+  const getUserAppointment = useCallback(async () => {
     console.log(userid)
     try {
       const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL || 'http://localhost:5000'}/api/user/getuserappointments`, {
@@ -41,9 +42,9 @@ const UserAppointments = () => {
       console.log(error);
       message.error('Something went wrong');
     }
-  };
+  }, [userid]);
 
-  const getDoctorAppointment = async () => {
+  const getDoctorAppointment = useCallback(async () => {
     console.log(userid)
     try {
       const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL || 'http://localhost:5000'}/api/doctor/getdoctorappointments`, {
@@ -61,7 +62,7 @@ const UserAppointments = () => {
       console.log(error);
       message.error('Something went wrong');
     }
-  };
+  }, [userid]);
 
   const handleStatus = async (userid, appointmentId, status) => {
     try {
@@ -88,7 +89,7 @@ const UserAppointments = () => {
 
   useEffect(() => {
     getUser();
-  }, [userid]);
+  }, []);
 
   useEffect(() => {
     if (type === true) {
@@ -96,7 +97,7 @@ const UserAppointments = () => {
     } else {
       getUserAppointment();
     }
-  }, [type])
+  }, [type, getDoctorAppointment, getUserAppointment]);
 
   const handleDownload = async (url, appointId) => {
     try {
@@ -158,9 +159,9 @@ const UserAppointments = () => {
                       <td><Button variant='link' onClick={() => handleDownload(appointment.document.path, appointment._id)}>{appointment.document.filename}</Button></td>
                       <td>{appointment.status}</td>
                       <td>{appointment.status === 'approved' ? <></> : <Button onClick={() => handleStatus(appointment.userInfo._id, appointment._id, 'approved')}>Approve</Button>}
-                      </td> 
+                      </td>
                     </tr>
-                  
+
                   );
                 })
               ) : (

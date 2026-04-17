@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import Table from 'react-bootstrap/Table';
 import Alert from 'react-bootstrap/Alert';
 import { Container } from 'react-bootstrap';
@@ -8,32 +8,31 @@ const AdminUsers = () => {
 
    const [users, setUsers] = useState([])
 
-   const getUsers = async()=>{
+   const getUsers = useCallback(async () => {
       try {
          const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL || 'http://localhost:5000'}/api/admin/getallusers`, {
             headers: {
-               Authorization : `Bearer ${localStorage.getItem("token")}`,
+               Authorization: `Bearer ${localStorage.getItem("token")}`,
             },
          })
-         if(res.data.success){
+         if (res.data.success) {
             setUsers(res.data.data)
             console.log(users)
          }
       } catch (error) {
          console.log(error)
       }
-   }
+   }, [])
 
-   useEffect(()=>{
-      getUsers()
-
-   },[])
+   useEffect(() => {
+      getUsers();
+   }, [getUsers]);
 
 
    return (
       <div>
          <h4 className='p-3 text-center'>All Users</h4>
-         
+
          <Container>
             <Table className='my-3' striped bordered hover>
                <thead>
@@ -56,7 +55,7 @@ const AdminUsers = () => {
                               <td>{user.phone}</td>
                               <td>{user.type}</td>
                               <td>{user.isdoctor === true ? 'Yes' : 'No'}</td>
-                              
+
                            </tr>
                         )
                      })
