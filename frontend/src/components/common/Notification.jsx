@@ -16,9 +16,9 @@ const Notification = () => {
 
    const handleAllMarkRead = async () => {
       try {
-         const res = await axios.post('http://localhost:5000/api/user/getallnotification', { userId: user._id }, {
+         const res = await axios.post(`${process.env.REACT_APP_BACKEND_URL || 'http://localhost:5000'}/api/user/getallnotification`, { userId: user._id }, {
             headers: {
-               Authorization: `Bearer ${localStorage.getItem('token')}`,
+               Authorization: `Bearer ${localStorage.getItem("token")}`,
             },
          })
          if (res.data.success) {
@@ -38,9 +38,9 @@ const Notification = () => {
    }
    const handledeleteAllMark = async () => {
       try {
-         const res = await axios.post('http://localhost:5000/api/user/deleteallnotification', { userId: user._id }, {
+         const res = await axios.post(`${process.env.REACT_APP_BACKEND_URL || 'http://localhost:5000'}/api/user/deleteallnotification`, { userId: user._id }, {
             headers: {
-               Authorization: `Bearer ${localStorage.getItem('token')}`,
+               Authorization: `Bearer ${localStorage.getItem("token")}`,
             },
          })
          if (res.data.success) {

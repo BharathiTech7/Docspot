@@ -30,7 +30,7 @@ const UserHome = () => {
    // Fetch user data from backend
    const getUserData = async () => {
       try {
-         const res = await axios.post('http://localhost:5000/api/user/getuserdata', {}, {
+         const res = await axios.post(`${process.env.REACT_APP_BACKEND_URL || 'http://localhost:5000'}/api/user/getuserdata`, {}, {
             headers: {
                Authorization: "Bearer " + localStorage.getItem('token'),
             },
@@ -46,7 +46,7 @@ const UserHome = () => {
    // Fetch all doctors
    const getDoctorData = async () => {
       try {
-         const res = await axios.get('http://localhost:5000/api/user/getalldoctorsu', {
+         const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL || 'http://localhost:5000'}/api/user/getalldoctorsu`, {
             headers: {
                Authorization: "Bearer " + localStorage.getItem('token'),
             },

@@ -31,7 +31,7 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post("http://localhost:5000/api/user/login", user);
+      const res = await axios.post(`${process.env.REACT_APP_BACKEND_URL || 'http://localhost:5000'}/api/user/login`, user);
       if (res.data.success) {
         localStorage.setItem('token', res.data.token);
         localStorage.setItem('userData', JSON.stringify(res.data.userData));

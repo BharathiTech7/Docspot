@@ -18,7 +18,7 @@ const AdminHome = () => {
 
    const getUserData = async () => {
       try {
-         await axios.post('http://localhost:5000/api/user/getuserdata', {}, {
+         await axios.post(`${process.env.REACT_APP_BACKEND_URL || 'http://localhost:5000'}/api/user/getuserdata`, {}, {
             headers: {
                Authorization: "Bearer " + localStorage.getItem('token')
             },

@@ -10,9 +10,9 @@ const AdminAppointments = () => {
 
    const getAppointments = async () => {
       try {
-         const res = await axios.get('http://localhost:5000/api/admin/getallAppointmentsAdmin', {
+         const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL || 'http://localhost:5000'}/api/admin/getallAppointmentsAdmin`, {
             headers: {
-               Authorization: `Bearer ${localStorage.getItem('token')}`
+               Authorization: `Bearer ${localStorage.getItem("token")}`
             },
          })
          if (res.data.success) {

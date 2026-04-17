@@ -11,7 +11,7 @@ const DoctorHome = ({ userdata }) => {
   const getDoctorAppointments = async () => {
     try {
       const res = await axios.get(
-        "http://localhost:5000/api/doctor/getDoctorAppointments",
+        `${process.env.REACT_APP_BACKEND_URL || 'http://localhost:5000'}/api/doctor/getDoctorAppointments`,
         {
           headers: {
             Authorization: "Bearer " + localStorage.getItem("token"),
@@ -43,7 +43,7 @@ const DoctorHome = ({ userdata }) => {
   const getDoctorProfile = async () => {
     try {
       const res = await axios.get(
-        "http://localhost:5000/api/doctor/getMyProfile",
+        `${process.env.REACT_APP_BACKEND_URL || 'http://localhost:5000'}/api/doctor/getMyProfile`,
         {
           headers: {
             Authorization: "Bearer " + localStorage.getItem("token"),
