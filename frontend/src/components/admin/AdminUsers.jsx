@@ -17,7 +17,7 @@ const AdminUsers = () => {
          })
          if (res.data.success) {
             setUsers(res.data.data)
-            console.log(users)
+            console.log(res.data.data)
          }
       } catch (error) {
          console.log(error)
