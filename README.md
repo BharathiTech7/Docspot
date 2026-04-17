@@ -8,10 +8,10 @@ DocSpot is a professional MERN stack application that streamlines the process of
 ## 🌐 Live Demo
 
 ✅ **Frontend:**  
-[https://docspot-frontend.vercel.app](https://docspot-frontend.vercel.app)
+https://docspot-web.netlify.app/
 
 ✅ **Backend:**  
-[https://docspot-backend-8jk2.onrender.com](https://docspot-backend-8jk2.onrender.com)
+https://docspot-wvoh.onrender.com/
 
 
 
