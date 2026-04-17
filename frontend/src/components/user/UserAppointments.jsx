@@ -35,8 +35,6 @@ const UserAppointments = () => {
         },
       });
       if (res.data.success) {
-
-        message.success(res.data.message);
         setUserAppointments(res.data.data);
       }
     } catch (error) {
@@ -57,7 +55,6 @@ const UserAppointments = () => {
         },
       });
       if (res.data.success) {
-        message.success(res.data.message);
         setDoctorAppointments(res.data.data);
       }
     } catch (error) {

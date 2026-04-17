@@ -46,8 +46,10 @@ function App() {
           </Routes>
         </div>
       </Router>
-      <footer className="bg-light text-center text-lg-start">
-        <div className="text-center p-3">© 2023 Copyright: DocSpot</div>
+      <footer className="text-center py-4">
+        <div className="container">
+          <p className="text-muted mb-0">© 2023 DocSpot • Seamless Appointment Booking</p>
+        </div>
       </footer>
     </div>
   );

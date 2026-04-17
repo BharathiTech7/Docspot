@@ -2,17 +2,17 @@ import React from 'react'
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import { Link } from 'react-router-dom';
-import { Container, Button } from 'react-bootstrap';
+import { Container } from 'react-bootstrap';
 
 import p3 from '../../images/p3.webp'
 
 const Home = () => {
   return (
-    <>
-      <Navbar expand="lg" className="bg-white shadow-sm py-3" style={{ borderBottom: '1px solid #eaeaea' }}>
+    <div className="home-bg">
+      <Navbar fixed="top" expand="lg" className="bg-white shadow-sm py-2">
         <Container fluid className="px-4 px-md-5">
           <Navbar.Brand>
-            <Link to={'/'} className="fw-bold fs-3 text-dark text-decoration-none">
+            <Link to={'/'} className="fw-bold fs-4 text-dark text-decoration-none">
               <span style={{ color: '#2b6cb0' }}>Doc</span>Spot
             </Link>
           </Navbar.Brand>
@@ -33,12 +33,19 @@ const Home = () => {
           <img alt="" src={p3} />
         </div>
         <div className="right-side">
-          <p>
-            <span className='f-letter'>Effortlessly schedule your doctor</span><br />
-            <span className='s-letter'>appointments with just a few clicks,</span> <br />
-            <span className='t-letter'>putting your health in your hands.</span><br />
-            <Button color='info' className='mt-3 register'><Link to={'/Login'}>Book your Doctor</Link></Button>
-          </p>
+          <div className="hero-content p-4">
+            <h1 className="hero-title fw-bold">
+              Effortlessly schedule your doctor appointments with just a few clicks
+            </h1>
+            <p className="hero-subtitle fs-5 mt-3 text-muted">
+              Putting your health in your hands with seamless scheduling and expert care.
+            </p>
+            <div className="hero-actions mt-4">
+              <Link to={'/Login'} className="btn btn-info btn-lg px-5 py-3 text-white fw-bold shadow-sm rounded-pill">
+                Book your Doctor
+              </Link>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -72,7 +79,7 @@ const Home = () => {
 
 
 
-    </>
+    </div>
   )
 }
 

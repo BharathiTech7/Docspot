@@ -65,10 +65,10 @@ const Login = () => {
 
   return (
     <>
-      <Navbar expand="lg" className="bg-white shadow-sm py-3" style={{ borderBottom: '1px solid #eaeaea' }}>
+      <Navbar fixed="top" expand="lg" className="bg-white shadow-sm py-2">
         <Container fluid className="px-4 px-md-5">
           <Navbar.Brand>
-            <Link to={'/'} className="fw-bold fs-3 text-dark text-decoration-none">
+            <Link to={'/'} className="fw-bold fs-4 text-dark text-decoration-none">
               <span style={{ color: '#2b6cb0' }}>Doc</span>Spot
             </Link>
           </Navbar.Brand>
@@ -84,10 +84,10 @@ const Login = () => {
         </Container>
       </Navbar>
 
-
-      <MDBContainer className="my-5">
-        <MDBCard style={{ border: 'none' }}>
-          <MDBRow style={{ background: 'rgb(190, 203, 203)' }} className='g-0 border-none p-3'>
+      <div style={{ marginTop: '80px' }}>
+        <MDBContainer className="my-5">
+          <MDBCard style={{ border: 'none' }}>
+            <MDBRow style={{ background: 'rgb(190, 203, 203)' }} className='g-0 border-none p-3'>
             <MDBCol md='6'>
               <MDBCardImage src={photo1} alt="login form" className='rounded-start w-100' />
             </MDBCol>
@@ -141,7 +141,8 @@ const Login = () => {
 
           </MDBRow>
         </MDBCard>
-      </MDBContainer>
+        </MDBContainer>
+      </div>
     </>
   );
 }

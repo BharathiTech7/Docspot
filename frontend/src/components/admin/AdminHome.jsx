@@ -71,14 +71,14 @@ const AdminHome = () => {
                      </div>
                   </div>
                </div>
-               <div className="content">
+               <div className="content-area">
                   <div className="header">
                      <div className="header-content" style={{ cursor: 'pointer' }}>
                         <Badge className={`notify ${activeMenuItem === 'notification' ? 'active' : ''}`} onClick={() => handleMenuItemClick('notification')} count={userdata?.notification ? userdata.notification.length : 0}>
                            <NotificationsIcon className='icon' />
                         </Badge>
 
-                        <h3>Hi..{userdata.fullName}</h3>
+                        <h5 className="mb-0 fw-bold">Admin: {userdata.fullName}</h5>
                      </div>
                   </div>
                   <div className="body">

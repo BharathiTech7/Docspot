@@ -50,44 +50,59 @@ const DoctorList = ({ userDoctorId, doctor, userdata }) => {
          }
       } catch (error) {
          console.error(error);
+         message.error('Something went wrong');
       }
    };
 
+   const getDoctorName = () => {
+      const name = doctor.fullname || doctor.fullName || doctor.docName || '';
+      if (!name) return 'Doctor';
+      if (name.toLowerCase().startsWith('dr.')) {
+         return name;
+      }
+      return `Dr. ${name}`;
+   };
+
    return (
-      <>
-         <Card style={{ width: '18rem' }}>
-            <Card.Body>
-               <Card.Title>Dr. {doctor.fullName}</Card.Title>
-               <Card.Text>
-                  <span>Phone: <b>{doctor.phone}</b></span>
-               </Card.Text>
-               <Card.Text>
-                  <span>Address: <b>{doctor.address}</b></span>
-               </Card.Text>
-               <Card.Text>
-                  <span>Specialization: <b>{doctor.specialization}</b></span>
-               </Card.Text>
-               <Card.Text>
-                  <span>Experience: <b>{doctor.experience} Yrs</b></span>
-               </Card.Text>
-               <Card.Text>
-                  <span>Fees: <b>{doctor.fees}</b></span>
-               </Card.Text>
-               <Card.Text>
-                  <span>Timing: <b>{doctor.timings[0]} : {doctor.timings[1]}</b></span>
-               </Card.Text>
-               <Button variant="primary" onClick={handleShow}>
+      <Col lg={4} md={6} sm={12}>
+         <Card className="doctor-card h-100">
+            <Card.Body className="d-flex flex-column">
+               <Card.Title className="fw-bold text-primary mb-3">
+                  {getDoctorName()}
+               </Card.Title>
+               <div className="mb-3 flex-grow-1">
+                  <Card.Text>
+                     <span>Phone: <b>{doctor.phone}</b></span>
+                  </Card.Text>
+                  <Card.Text>
+                     <span>Address: <b>{doctor.address}</b></span>
+                  </Card.Text>
+                  <Card.Text>
+                     <span>Specialization: <b>{doctor.specialization}</b></span>
+                  </Card.Text>
+                  <Card.Text>
+                     <span>Experience: <b>{doctor.experience} Yrs</b></span>
+                  </Card.Text>
+                  <Card.Text>
+                     <span>Fees: <b>{doctor.fees}</b></span>
+                  </Card.Text>
+                  <Card.Text>
+                     <span>Timing: <b>{doctor.timings[0]} : {doctor.timings[1]}</b></span>
+                  </Card.Text>
+               </div>
+               <Button className="book-btn mt-auto" onClick={handleShow}>
                   Book Now
                </Button>
-               <Modal show={show} onHide={handleClose}>
+
+               <Modal show={show} onHide={handleClose} centered>
                   <Modal.Header closeButton>
-                     <Modal.Title>Booking appointment</Modal.Title>
+                     <Modal.Title>Booking Appointment</Modal.Title>
                   </Modal.Header>
                   <Form onSubmit={handleBook}>
                      <Modal.Body>
                         <strong><u>Doctor Details:</u></strong>
                         <br />
-                        Name:&nbsp;&nbsp;{doctor.fullName}
+                        Name:&nbsp;&nbsp;{getDoctorName()}
                         <hr />
                         Specialization:&nbsp;<b>{doctor.specialization}</b>
                         <hr />
@@ -102,14 +117,14 @@ const DoctorList = ({ userDoctorId, doctor, userdata }) => {
                                     min={currentDate}
                                     value={dateTime}
                                     onChange={handleChange}
+                                    required
                                  />
                               </Form.Group>
 
                               <Form.Group controlId="formFileSm" className="mb-3">
                                  <Form.Label>Documents</Form.Label>
-                                 <Form.Control accept="image/*" type="file" size="sm" onChange={handleDocumentChange} />
+                                 <Form.Control accept="image/*" type="file" size="sm" onChange={handleDocumentChange} required />
                               </Form.Group>
-
                            </Col>
                         </Row>
                      </Modal.Body>
@@ -117,7 +132,7 @@ const DoctorList = ({ userDoctorId, doctor, userdata }) => {
                         <Button variant="secondary" onClick={handleClose}>
                            Close
                         </Button>
-                        <Button type='submit' variant="primary">
+                        <Button type='submit' variant="primary" disabled={!dateTime || !documentFile}>
                            Book
                         </Button>
                      </Modal.Footer>
@@ -125,7 +140,7 @@ const DoctorList = ({ userDoctorId, doctor, userdata }) => {
                </Modal>
             </Card.Body>
          </Card>
-      </>
+      </Col>
    );
 };
 

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { Badge, Row } from 'antd';
+import { Badge } from 'antd';
+import { Container, Row } from 'react-bootstrap';
 import Notification from '../common/Notification';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
@@ -7,7 +8,6 @@ import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import MedicationIcon from '@mui/icons-material/Medication';
 import LogoutIcon from '@mui/icons-material/Logout';
 import NotificationsIcon from '@mui/icons-material/Notifications';
-import { Container } from 'react-bootstrap';
 import { useLocation } from "react-router-dom";
 import ApplyDoctor from './ApplyDoctor';
 import UserAppointments from './UserAppointments';
@@ -115,7 +115,7 @@ useEffect(() => {
                   </div>
                </div>
             </div>
-            <div className="content">
+            <div className="content-area">
                <div className="header">
                   <div className="header-content">
                      <Badge
@@ -125,8 +125,10 @@ useEffect(() => {
                      >
                         <NotificationsIcon className="icon" />
                      </Badge>
-                     {userdata.isdoctor && <h3>Dr. </h3>}
-                     <h3>{userdata.fullName}</h3>
+                     <div className="d-flex align-items-center gap-2">
+                        {userdata.isdoctor && <h5 className="mb-0 text-muted">Dr.</h5>}
+                        <h5 className="mb-0 fw-bold">{userdata.fullName}</h5>
+                     </div>
                   </div>
                </div>
                <div className="body">
@@ -134,21 +136,21 @@ useEffect(() => {
                   {activeMenuItem === 'notification' && <Notification />}
                   {activeMenuItem === 'userappointments' && <UserAppointments />}
                   {!['applyDoctor', 'notification', 'userappointments'].includes(activeMenuItem) && (
-                   <>
-                    {userdata.isdoctor ? (
-                     <DoctorHome userdata={userdata} />
-                              ) : (
-                            <Container>
-                    <h2 className="text-center p-2">Home</h2>
-                       <Row>
-                         {doctors.map((doctor, i) => (
-                       <DoctorList userDoctorId={doctor.userId} doctor={doctor} userdata={userdata} key={i} />
-                          ))}
-                      </Row>
-                   </Container>
-                           )}
-                       </>
-                     )}
+                    <>
+                     {userdata.isdoctor ? (
+                      <DoctorHome userdata={userdata} />
+                               ) : (
+                             <Container>
+                     <h2 className="text-center p-2">Home</h2>
+                        <Row className="g-4">
+                          {doctors.map((doctor, i) => (
+                        <DoctorList userDoctorId={doctor.userId} doctor={doctor} userdata={userdata} key={i} />
+                           ))}
+                       </Row>
+                    </Container>
+                            )}
+                        </>
+                      )}
                </div>
             </div>
          </div>
